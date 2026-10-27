@@ -1,171 +1,322 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Portfolio of Sai Ramesh U, Senior Full Stack .NET Developer focused on C#, responsive front-end engineering, accessible interfaces, APIs, and enterprise applications.">
-<title>Sai Ramesh U — Full Stack .NET Developer</title>
-<style>
-:root {
-  --site-primary: #123b4a;
-  --site-on-primary: #ffffff;
-  --site-secondary: #d8ece7;
-  --site-on-secondary: #143c38;
-  --site-background: #f5f7f5;
-  --site-on-background: #172b31;
-  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-heading-scale: 1;
-  --site-spacing-scale: 1;
-  --site-radius-scale: 1;
-  --site-decoration-opacity: 1;
-  --surface: light-dark(#ffffff, #17272c);
-  --surface-soft: light-dark(#edf3f1, #20353b);
-  --ink-muted: light-dark(#4d6268, #c0d0d3);
-  --line: light-dark(#d6e1de, #3b5056);
-  --accent: light-dark(#a84e2b, #f3a17c);
-}
-* { box-sizing: border-box; }
-html { color-scheme: light dark; scroll-behavior: smooth; }
-body { margin: 0; background: var(--site-background); color: var(--site-on-background); font-family: var(--site-font-body); line-height: 1.65; }
-#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); }
-a { color: inherit; text-underline-offset: .2em; }
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.skip-link { position: absolute; left: 1rem; top: -5rem; padding: .75rem 1rem; background: var(--site-primary); color: var(--site-on-primary); z-index: 10; border-radius: .5rem; }
-.skip-link:focus { top: 1rem; }
-.wrap { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
-header { background: var(--site-primary); color: var(--site-on-primary); }
-.nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.1rem 0; }
-.brand { font-weight:800; letter-spacing:-.03em; text-decoration:none; }
-.navlinks { display:flex; flex-wrap:wrap; gap:1.2rem; }
-.navlinks a { font-size:.94rem; color:var(--site-on-primary); text-decoration:none; opacity:.92; }
-.navlinks a:hover { text-decoration:underline; }
-.hero { padding: clamp(3.5rem, 8vw, 7rem) 0; display:grid; grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr); gap:3rem; align-items:center; }
-.eyebrow { text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; font-weight:800; color:var(--accent); }
-h1,h2,h3 { font-family:var(--site-font-heading); line-height:1.12; letter-spacing:-.035em; }
-h1 { font-size:calc(clamp(2.6rem, 6vw, 4.8rem) * var(--site-heading-scale)); margin:.7rem 0 1rem; }
-h2 { font-size:calc(clamp(1.8rem, 3.3vw, 2.7rem) * var(--site-heading-scale)); margin:0 0 1.25rem; }
-h3 { font-size:calc(1.25rem * var(--site-heading-scale)); margin:.2rem 0 .7rem; }
-.lede { font-size:clamp(1.1rem, 2vw, 1.3rem); max-width:64ch; color:var(--ink-muted); }
-.hero .lede { color:#e0ecec; }
-.actions { display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.7rem; }
-.btn { display:inline-flex; align-items:center; justify-content:center; padding:.78rem 1.05rem; border-radius:calc(.7rem * var(--site-radius-scale)); font-weight:750; text-decoration:none; border:1px solid transparent; cursor:pointer; font:inherit; }
-.btn-primary { background:var(--site-secondary); color:var(--site-on-secondary); }
-.btn-outline { border-color:currentColor; color:inherit; }
-.profile-card { padding:calc(1.6rem * var(--site-spacing-scale)); border:1px solid #ffffff45; background:#ffffff0d; border-radius:calc(1.4rem * var(--site-radius-scale)); }
-.initials { width:4.6rem; height:4.6rem; display:grid; place-items:center; border-radius:1rem; background:var(--site-secondary); color:var(--site-on-secondary); font-size:1.35rem; font-weight:900; margin-bottom:1rem; }
-.profile-card p { margin:.4rem 0; color:#e0ecec; }
-.profile-card a { display:inline-block; margin-top:.9rem; }
-section { padding:calc(4.3rem * var(--site-spacing-scale)) 0; }
-.section-intro { color:var(--ink-muted); max-width:72ch; margin-top:-.5rem; margin-bottom:2rem; }
-.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
-.card { background:var(--surface); border:1px solid var(--line); border-radius:calc(1rem * var(--site-radius-scale)); padding:calc(1.35rem * var(--site-spacing-scale)); box-shadow:0 8px 24px #102b3010; }
-.card p { color:var(--ink-muted); margin:.45rem 0; }
-.icon { display:inline-grid; place-items:center; width:2.5rem; height:2.5rem; border-radius:.7rem; background:var(--site-secondary); color:var(--site-on-secondary); font-weight:900; margin-bottom:.9rem; }
-.pill-row { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1rem; }
-.pill { border:1px solid var(--line); background:var(--surface-soft); padding:.32rem .65rem; border-radius:99px; font-size:.84rem; font-weight:650; }
-.band { background:var(--site-secondary); color:var(--site-on-secondary); }
-.band .section-intro { color:var(--site-on-secondary); }
-.case-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-.case { background:var(--surface); color:var(--site-on-background); border-radius:calc(1rem * var(--site-radius-scale)); padding:1.5rem; border:1px solid var(--line); }
-.case p, .case li { color:var(--ink-muted); }
-.case ul { padding-left:1.25rem; }
-.demo { display:grid; grid-template-columns: minmax(0,1fr) minmax(270px,.85fr); gap:1.25rem; align-items:start; }
-.demo-form { background:var(--surface); border:1px solid var(--line); padding:1.4rem; border-radius:calc(1rem * var(--site-radius-scale)); }
-label { display:block; font-weight:750; margin:.85rem 0 .3rem; }
-input, textarea { display:block; width:100%; padding:.75rem; border:1px solid var(--line); border-radius:.55rem; background:var(--surface); color:var(--site-on-background); font:inherit; }
-.hint { font-size:.9rem; color:var(--ink-muted); margin:.25rem 0; }
-.error { color:#b42318; font-weight:700; margin-top:.35rem; }
-.success { padding:1rem; background:var(--surface-soft); border-left:4px solid #27866d; border-radius:.5rem; margin-top:1rem; }
-.code-note { background:var(--site-primary); color:var(--site-on-primary); border-radius:calc(1rem * var(--site-radius-scale)); padding:1.5rem; }
-.code-note p { color:#e0ecec; }
-pre { overflow:auto; white-space:pre-wrap; word-break:break-word; padding:1rem; border-radius:.7rem; background:#071f27; color:#e5f4ef; font-size:.83rem; line-height:1.55; }
-.timeline { border-left:2px solid var(--line); padding-left:1.3rem; margin-left:.4rem; }
-.role { position:relative; padding:0 0 1.5rem; }
-.role::before { content:""; width:.7rem; height:.7rem; background:var(--accent); border-radius:50%; position:absolute; left:-1.72rem; top:.45rem; }
-.role .meta { color:var(--ink-muted); font-size:.93rem; }
-.contact { background:var(--site-primary); color:var(--site-on-primary); padding:3rem; border-radius:calc(1.2rem * var(--site-radius-scale)); }
-.contact p { color:#e0ecec; }
-.contact-links { display:flex; flex-wrap:wrap; gap:1rem; }
-.contact-links a { color:var(--site-on-primary); }
-footer { padding:2rem 0; color:var(--ink-muted); font-size:.9rem; }
-.small { font-size:.9rem; color:var(--ink-muted); }
-@media (max-width:800px) { .hero,.demo { grid-template-columns:1fr; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .case-grid { grid-template-columns:1fr; } }
-@media (max-width:560px) { .wrap { width:min(100% - 1.3rem,1120px); } .nav { align-items:flex-start; flex-direction:column; } .navlinks { gap:.8rem; } .grid { grid-template-columns:1fr; } .contact { padding:1.5rem; } }
-@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sai Ramesh U — Senior Full Stack .NET Developer with 9+ years of software development experience. C#, ASP.NET Core, APIs, SQL Server, responsive UI and Azure DevOps.">
+  <title>Sai Ramesh U | Senior Full Stack .NET Developer</title>
+  <style>
+    :root {
+      --navy: #123b4a;
+      --teal: #d8ece7;
+      --ink: #172b31;
+      --muted: #53676d;
+      --paper: #f5f7f5;
+      --white: #fff;
+      --line: #d6e1de;
+      --accent: #a84e2b;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-underline-offset: 4px; }
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #d97c48;
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: absolute; left: 12px; top: -60px;
+      padding: 10px; background: white; color: var(--navy); z-index: 10;
+    }
+    .skip-link:focus { top: 12px; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    header { background: var(--navy); color: white; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 20px; padding: 20px 0; flex-wrap: wrap;
+    }
+    .brand { font-weight: 850; text-decoration: none; letter-spacing: -.04em; }
+    .navlinks { display: flex; gap: 18px; flex-wrap: wrap; }
+    .navlinks a { color: white; text-decoration: none; font-size: .94rem; }
+    .hero {
+      display: grid; grid-template-columns: 1.4fr .8fr;
+      gap: 48px; align-items: center; padding: 76px 0 88px;
+    }
+    .eyebrow {
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: .13em; font-size: .78rem; font-weight: 800;
+    }
+    header .eyebrow { color: #b9e5d8; }
+    h1, h2, h3 { line-height: 1.15; letter-spacing: -.035em; }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.7rem); margin: 12px 0 18px; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.7rem); margin: 8px 0 18px; }
+    h3 { font-size: 1.25rem; margin: 5px 0 12px; }
+    p { margin: 10px 0; }
+    .lede { color: #e0ecec; font-size: 1.18rem; max-width: 65ch; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center;
+      padding: 11px 17px; border: 1px solid currentColor;
+      border-radius: 10px; text-decoration: none; font-weight: 750;
+      cursor: pointer; font: inherit;
+    }
+    .btn-primary { background: var(--teal); color: #143c38; border-color: var(--teal); }
+    .btn-outline { color: white; }
+    .profile-card {
+      padding: 26px; border: 1px solid #ffffff45;
+      border-radius: 22px; background: #ffffff0d;
+    }
+    .initials {
+      display: grid; place-items: center; width: 74px; height: 74px;
+      border-radius: 18px; background: var(--teal); color: #143c38;
+      font-size: 1.4rem; font-weight: 900; margin-bottom: 20px;
+    }
+    .profile-card p { color: #e0ecec; }
+    .profile-card a { display: inline-block; margin-top: 14px; }
+    section { padding: 68px 0; }
+    .section-intro { color: var(--muted); max-width: 75ch; margin-bottom: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card, .case {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 23px;
+      box-shadow: 0 8px 24px #102b3010;
+    }
+    .card p, .case p, .case li { color: var(--muted); }
+    .icon {
+      display: inline-grid; place-items: center; width: 42px; height: 42px;
+      border-radius: 11px; background: var(--teal); color: #143c38;
+      font-weight: 850; margin-bottom: 12px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+    .pill {
+      border: 1px solid var(--line); background: #edf3f1;
+      padding: 4px 10px; border-radius: 99px; font-size: .82rem;
+      font-weight: 650;
+    }
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
+    .case ul { padding-left: 22px; }
+    .band { background: var(--teal); color: #143c38; }
+    .band .section-intro { color: #315b55; }
+    .band .eyebrow { color: #315b55; }
+    .demo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .demo-form { background: white; border: 1px solid var(--line); padding: 24px; border-radius: var(--radius); }
+    label { display: block; font-weight: 750; margin: 14px 0 5px; }
+    input, textarea {
+      display: block; width: 100%; padding: 12px;
+      border: 1px solid #aebfbb; border-radius: 8px;
+      background: white; color: var(--ink); font: inherit;
+    }
+    .hint, .small { font-size: .9rem; color: var(--muted); }
+    .error { color: #a32222; font-weight: 700; }
+    .success { padding: 14px; background: #edf3f1; border-left: 4px solid #27866d; margin-top: 16px; }
+    .code-note { background: var(--navy); color: white; padding: 24px; border-radius: var(--radius); }
+    pre { overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; border-radius: 10px; background: #071f27; color: #e5f4ef; font-size: .85rem; }
+    .timeline { border-left: 2px solid var(--line); padding-left: 24px; margin-left: 8px; }
+    .role { position: relative; padding-bottom: 22px; }
+    .role::before {
+      content: ""; width: 11px; height: 11px; background: var(--accent);
+      border-radius: 50%; position: absolute; left: -31px; top: 7px;
+    }
+    .meta { color: var(--muted); font-size: .93rem; }
+    .contact { background: var(--navy); color: white; padding: 40px; border-radius: 20px; }
+    .contact p { color: #e0ecec; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; }
+    .contact-links a { color: white; }
+    footer { padding: 28px 0; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 800px) {
+      .hero, .demo, .case-grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { gap: 28px; padding: 48px 0 60px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: calc(100% - 26px); }
+      .grid { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; }
+      .navlinks { gap: 12px; }
+      .contact { padding: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div id="app">
-<header>
+
+<header id="top">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Sai Ramesh U portfolio home">SAI RAMESH U<span aria-hidden="true">.</span></a>
+    <a class="brand" href="#top">SAI RAMESH U.</a>
     <nav class="navlinks" aria-label="Main navigation">
-      <a href="#work">Selected work</a><a href="#skills">Capabilities</a><a href="#approach">Accessibility</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+      <a href="#work">Selected work</a>
+      <a href="#skills">Skills</a>
+      <a href="#accessibility">Accessibility</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
-  <div class="wrap hero" id="top">
+
+  <div class="wrap hero">
     <div>
       <div class="eyebrow">Senior Full Stack .NET Developer</div>
       <h1>Building dependable software and clearer digital experiences.</h1>
-      <p class="lede">I’m Sai Ramesh U — a full-stack developer with 9+ years of software development and IT experience across enterprise applications, C#/.NET services, responsive interfaces, APIs, and SQL Server.</p>
-      <div class="actions"><a class="btn btn-primary" href="#work">Explore portfolio</a><a class="btn btn-outline" href="https://github.com/sairamesh28" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a></div>
+      <p class="lede">I’m Sai Ramesh U, a full-stack developer with 9+ years of software development and IT experience across enterprise applications, C#/.NET services, responsive interfaces, APIs, and SQL Server.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#work">Explore portfolio</a>
+        <a class="btn btn-outline" href="https://github.com/sairamesh28" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+      </div>
     </div>
     <aside class="profile-card" aria-label="Professional overview">
       <div class="initials" aria-hidden="true">SR</div>
-      <h2 style="font-size:1.55rem;margin-bottom:.5rem">Full stack. Front end. APIs.</h2>
-      <p>Enterprise application development with a focus on maintainability, responsive UI, usability, and accessibility-conscious implementation.</p>
+      <h2 style="font-size:1.55rem">Full stack. Front end. APIs.</h2>
+      <p>Enterprise application development focused on maintainability, responsive UI, usability, and accessibility-conscious implementation.</p>
       <a href="https://www.linkedin.com/in/sai-ramesh-u/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
     </aside>
   </div>
 </header>
+
 <main id="main">
-<section id="work">
-  <div class="wrap">
-    <div class="eyebrow">Selected work & demonstrations</div><h2>How I approach the work</h2>
-    <p class="section-intro">The examples below are portfolio demonstrations of relevant engineering practices, not claims of confidential client deliverables. They illustrate the type of work I can discuss and extend in an enterprise environment.</p>
-    <div class="grid">
-      <article class="card"><div class="icon" aria-hidden="true">01</div><h3>Accessible service request form</h3><p>A responsive form concept with persistent labels, clear instructions, field-level errors, and a summary of submitted information.</p><div class="pill-row"><span class="pill">HTML5</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">Keyboard support</span></div><p><a href="#accessible-demo">Try the interactive demo ↓</a></p></article>
-      <article class="card"><div class="icon" aria-hidden="true">02</div><h3>.NET API architecture</h3><p>A maintainable service pattern separating HTTP endpoints, business rules, data access, validation, and consistent error responses.</p><div class="pill-row"><span class="pill">C#</span><span class="pill">ASP.NET Core Web API</span><span class="pill">REST / JSON</span><span class="pill">SQL Server</span></div><p><a href="#api-sample">View illustrative code ↓</a></p></article>
-      <article class="card"><div class="icon" aria-hidden="true">03</div><h3>Enterprise UI consistency</h3><p>Reusable form controls, predictable spacing, visible focus, responsive layouts, and consistent interaction patterns that can align with a team design system.</p><div class="pill-row"><span class="pill">Bootstrap</span><span class="pill">Material familiarity</span><span class="pill">Reusable components</span><span class="pill">Responsive UI</span></div></article>
+  <section id="work">
+    <div class="wrap">
+      <div class="eyebrow">Selected work & demonstrations</div>
+      <h2>How I approach the work</h2>
+      <p class="section-intro">These portfolio examples demonstrate relevant engineering practices. They are illustrative scenarios, not claims of confidential client deliverables or deployed projects.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">01</div>
+          <h3>Accessible service request form</h3>
+          <p>A responsive form concept with persistent labels, clear instructions, field-level errors, and a summary of submitted information.</p>
+          <div class="pill-row"><span class="pill">HTML5</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">Keyboard support</span></div>
+          <p><a href="#form-demo">Try the interactive demo ↓</a></p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">02</div>
+          <h3>.NET API architecture</h3>
+          <p>A maintainable service pattern separating HTTP endpoints, business rules, data access, validation, and consistent error responses.</p>
+          <div class="pill-row"><span class="pill">C#</span><span class="pill">ASP.NET Core</span><span class="pill">REST / JSON</span><span class="pill">SQL Server</span></div>
+          <p><a href="#api-sample">View illustrative code ↓</a></p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">03</div>
+          <h3>Enterprise UI consistency</h3>
+          <p>Reusable form controls, predictable spacing, visible focus, responsive layouts, and consistent interaction patterns.</p>
+          <div class="pill-row"><span class="pill">Bootstrap</span><span class="pill">Reusable components</span><span class="pill">Responsive UI</span></div>
+        </article>
+      </div>
+
+      <div class="case-grid">
+        <article class="case">
+          <div class="eyebrow">Illustrative end-to-end scenario</div>
+          <h3>Modernizing a public-service request workflow</h3>
+          <p><strong>Scenario:</strong> A resident submits a request through a government portal. The team needs clearer guidance, reliable validation, traceable processing, and maintainable browser-to-database integration.</p>
+          <p><strong>Engineering approach:</strong></p>
+          <ul>
+            <li><strong>UI:</strong> Responsive HTML, CSS, and JavaScript with persistent labels, keyboard-friendly controls, clear validation, and an error summary.</li>
+            <li><strong>API:</strong> ASP.NET Core endpoint with request validation, business rules in a service layer, consistent HTTP responses, and exception handling.</li>
+            <li><strong>Data:</strong> SQL Server persistence through a data-access layer, parameterized queries, and appropriate transaction handling.</li>
+            <li><strong>Delivery:</strong> Code review, automated tests, build validation, and deployment checks through an established Azure DevOps pipeline.</li>
+            <li><strong>Support:</strong> Correlated logs, cross-layer troubleshooting, and regression testing.</li>
+          </ul>
+          <p><strong>Intended outcome:</strong> Fewer avoidable input errors, clearer recovery from failures, and code that is easier to test and maintain.</p>
+          <p class="small">This is a representative technical scenario, not a claim of a project delivered for a named client or deployed in production.</p>
+        </article>
+
+        <article class="case">
+          <div class="eyebrow">Senior-level delivery checklist</div>
+          <h3>Making changes production-ready</h3>
+          <ul>
+            <li>Clarify acceptance criteria and existing business rules before changing a mature application.</li>
+            <li>Separate UI, business logic, integrations, and persistence responsibilities.</li>
+            <li>Validate authorization and inputs; protect sensitive information in logs and responses.</li>
+            <li>Test success, validation failures, API failures, and database failure paths.</li>
+            <li>Review keyboard flow, focus visibility, labels, error announcements, contrast, and responsive behavior.</li>
+            <li>Use automated checks and manual accessibility testing where available.</li>
+            <li>Validate deployments and monitor for regressions.</li>
+          </ul>
+          <p class="small">Only claim accessibility conformance or tool-based testing after those checks have actually been performed.</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
-<section class="band" id="approach">
-  <div class="wrap">
-    <div class="eyebrow">Inclusive by design</div><h2>Accessibility is part of implementation.</h2>
-    <p class="section-intro">I consider accessibility while building user-facing features—not only after the UI is complete. My résumé describes knowledge of WCAG 2.1 AA and Section 508 principles; formal training and hands-on use of specific tools should be confirmed separately.</p>
-    <div class="grid">
-      <article class="card"><div class="icon" aria-hidden="true">⌨</div><h3>Keyboard operation</h3><p>Logical tab order, visible focus, no keyboard traps, and controls that can be operated without a mouse.</p></article>
-      <article class="card"><div class="icon" aria-hidden="true">Aa</div><h3>Semantic structure</h3><p>Meaningful headings, associated labels, descriptive button names, and clear page landmarks.</p></article>
-      <article class="card"><div class="icon" aria-hidden="true">✓</div><h3>Understandable forms</h3><p>Instructions before input, specific error messages, and a clear path to correct invalid fields.</p></article>
+  </section>
+
+  <section class="band" id="accessibility">
+    <div class="wrap">
+      <div class="eyebrow">Inclusive by design</div>
+      <h2>Accessibility is part of implementation.</h2>
+      <p class="section-intro">I consider accessibility while building user-facing features. My résumé describes knowledge of WCAG 2.1 AA and Section 508 principles. Formal training and use of specific testing tools should be confirmed separately.</p>
+      <div class="grid">
+        <article class="card"><div class="icon" aria-hidden="true">⌨</div><h3>Keyboard operation</h3><p>Logical tab order, visible focus, and controls that work without a mouse.</p></article>
+        <article class="card"><div class="icon" aria-hidden="true">Aa</div><h3>Semantic structure</h3><p>Meaningful headings, associated labels, descriptive names, and page landmarks.</p></article>
+        <article class="card"><div class="icon" aria-hidden="true">✓</div><h3>Understandable forms</h3><p>Clear instructions, specific error messages, and a path to correct invalid fields.</p></article>
+      </div>
+      <p class="small">This demonstration is designed with accessibility practices in mind; it is not a certification of WCAG conformance. Validate in the target environment with keyboard checks, screen readers, contrast tools, and automated testing.</p>
     </div>
-    <p class="small" style="color:var(--site-on-secondary);margin-top:1.3rem"><strong>Testing note:</strong> This demo is designed with accessibility practices in mind, but it is not a certification of WCAG conformance. Validate with keyboard-only checks, screen readers, contrast tools, and automated testing such as axe in the target environment.</p>
-  </div>
-</section>
-<section id="accessible-demo">
-  <div class="wrap">
-    <div class="eyebrow">Interactive UI sample</div><h2>Service request form</h2>
-    <p class="section-intro">Try submitting with missing information, then correct the fields. The example uses visible labels, native controls, inline feedback, and an announced result.</p>
-    <div class="demo">
-      <form class="demo-form" id="request-form" novalidate>
-        <div id="error-summary" class="error" tabindex="-1" role="alert" hidden></div>
-        <label for="full-name">Full name <span aria-hidden="true">*</span></label><input id="full-name" name="full-name" autocomplete="name" required aria-describedby="name-hint name-error"><p id="name-hint" class="hint">Enter your first and last name.</p><p id="name-error" class="error" hidden></p>
-        <label for="email">Email address <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint email-error"><p id="email-hint" class="hint">Use an address where we can contact you.</p><p id="email-error" class="error" hidden></p>
-        <label for="details">How can we help? <span aria-hidden="true">*</span></label><textarea id="details" name="details" rows="4" required aria-describedby="details-hint details-error"></textarea><p id="details-hint" class="hint">Briefly describe the request. Do not enter sensitive personal information in this demo.</p><p id="details-error" class="error" hidden></p>
-        <div class="actions"><button class="btn btn-primary" type="submit">Review request</button><button class="btn btn-outline" type="reset">Clear form</button></div>
-        <div id="form-result" class="success" role="status" aria-live="polite" hidden></div>
-      </form>
-      <aside class="card"><h3>What this demonstrates</h3><ul><li>Labels remain visible when fields are filled.</li><li>Required fields are identified in text, not color alone.</li><li>Validation errors explain how to fix each field.</li><li>Error summary receives focus after invalid submission.</li><li>Result messages are announced to assistive technology.</li></ul><p class="small">This is a front-end-only sample. It does not send or store data.</p></aside>
+  </section>
+
+  <section id="form-demo">
+    <div class="wrap">
+      <div class="eyebrow">Interactive UI sample</div>
+      <h2>Service request form</h2>
+      <p class="section-intro">Submit the form with missing information to see validation, then correct the fields. This demonstration runs only in your browser.</p>
+      <div class="demo">
+        <form class="demo-form" id="request-form" novalidate>
+          <div id="error-summary" class="error" tabindex="-1" role="alert" hidden></div>
+
+          <label for="full-name">Full name *</label>
+          <input id="full-name" name="full-name" autocomplete="name" required aria-describedby="name-hint name-error">
+          <p id="name-hint" class="hint">Enter your first and last name.</p>
+          <p id="name-error" class="error" hidden></p>
+
+          <label for="email">Email address *</label>
+          <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint email-error">
+          <p id="email-hint" class="hint">Use an address where we can contact you.</p>
+          <p id="email-error" class="error" hidden></p>
+
+          <label for="details">How can we help? *</label>
+          <textarea id="details" name="details" rows="4" required aria-describedby="details-hint details-error"></textarea>
+          <p id="details-hint" class="hint">Do not enter sensitive personal information in this demo.</p>
+          <p id="details-error" class="error" hidden></p>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Review request</button>
+            <button class="btn" type="reset">Clear form</button>
+          </div>
+          <div id="form-result" class="success" role="status" aria-live="polite" hidden></div>
+        </form>
+
+        <aside class="card">
+          <h3>What this demonstrates</h3>
+          <ul>
+            <li>Persistent, visible labels.</li>
+            <li>Required fields identified in text.</li>
+            <li>Specific validation messages.</li>
+            <li>Error summary receives focus after invalid submission.</li>
+            <li>Result messages announced to assistive technology.</li>
+          </ul>
+          <p class="small">Front-end-only sample. It does not send or store data.</p>
+        </aside>
+      </div>
     </div>
-  </div>
-</section>
-<section id="api-sample">
-  <div class="wrap">
-    <div class="eyebrow">Backend thinking</div><h2>Example API endpoint pattern</h2>
-    <p class="section-intro">Illustrative C# only. This small example shows request validation and a clear response shape; a production implementation would also include authorization, logging, service-layer rules, persistence, and tests appropriate to the application.</p>
-    <div class="code-note"><h3>ASP.NET Core minimal endpoint (illustrative)</h3><pre><code>app.MapPost("/api/service-requests", (
+  </section>
+
+  <section id="api-sample">
+    <div class="wrap">
+      <div class="eyebrow">Backend thinking</div>
+      <h2>Example API endpoint pattern</h2>
+      <p class="section-intro">Illustrative C# showing request validation and a response shape. A production implementation would also need appropriate authorization, logging, service-layer rules, persistence, and tests.</p>
+      <div class="code-note">
+        <h3>ASP.NET Core minimal endpoint</h3>
+        <pre><code>app.MapPost("/api/service-requests", (
     CreateServiceRequest request) =>
 {
     if (string.IsNullOrWhiteSpace(request.Description))
@@ -187,105 +338,182 @@ footer { padding:2rem 0; color:var(--ink-muted); font-size:.9rem; }
 });
 
 public sealed record CreateServiceRequest(
-    string Description);</code></pre><p>This snippet is a discussion sample, not a complete or deployed API. It has not been connected to a database or execution environment.</p></div>
-  </div>
-</section>
-<section id="skills">
-  <div class="wrap">
-    <div class="eyebrow">Core capabilities</div><h2>Full-stack engineering toolkit</h2>
-    <p class="section-intro">A practical mix of backend, front-end, integration, database, delivery, and production-support experience.</p>
-    <div class="grid">
-      <article class="card"><h3>C# & .NET</h3><p>ASP.NET MVC, ASP.NET Core, Web API, Entity Framework, LINQ, dependency injection, business logic, and application maintenance.</p></article>
-      <article class="card"><h3>Front-end & UX</h3><p>HTML5, CSS3, Sass, JavaScript, Bootstrap, responsive layouts, form validation, reusable components, and design-to-code implementation.</p></article>
-      <article class="card"><h3>APIs & middleware</h3><p>REST, HTTP, JSON, request validation, exception handling, service integrations, Swagger/OpenAPI, and Postman.</p></article>
-      <article class="card"><h3>SQL Server</h3><p>T-SQL, joins, stored procedures, relational data access, transaction handling, and data integrity.</p></article>
-      <article class="card"><h3>Azure DevOps & delivery</h3><p>Git workflows, build/release pipelines, artifact management, deployment validation, and troubleshooting CI/CD issues.</p></article>
-      <article class="card"><h3>Production support</h3><p>Cross-layer debugging, defect resolution, regression checks, secure coding practices, and incremental modernization of existing systems.</p></article>
+    string Description);</code></pre>
+        <p>This is a discussion sample, not a complete or deployed API. It is not connected to a database or execution environment.</p>
+      </div>
     </div>
-  </div>
-</section>
-<section id="experience">
-  <div class="wrap">
-    <div class="eyebrow">Career snapshot</div><h2>Enterprise application experience</h2>
-    <p class="section-intro">Experience spanning government, customer-facing applications, APIs, cloud environments, and software delivery.</p>
-    <div class="timeline">
-      <div class="role"><h3>Programmer Analyst 6 · State of Michigan</h3><div class="meta">May 2026 – Present · Lansing, Michigan / Hybrid</div><p>Enhancing government applications with C#/.NET, responsive UI, APIs, SQL Server, Azure DevOps workflows, and accessibility-conscious implementation.</p></div>
-      <div class="role"><h3>Azure .NET Developer · Brightspeed</h3><div class="meta">September 2025 – May 2026 · Remote</div><p>Developed .NET application functionality, responsive interfaces, REST APIs, SQL Server features, and supported cloud deployments.</p></div>
-      <div class="role"><h3>API .NET Developer / .NET Developer · Charles Schwab</h3><div class="meta">April 2025 – September 2025 · Austin, Texas / Hybrid</div><p>Built and enhanced API endpoints and enterprise application modules, including validation, integrations, SQL Server operations, and debugging.</p></div>
-      <div class="role"><h3>Cloud Engineer / DevOps Engineer · Tech Mahindra</h3><div class="meta">February 2024 – April 2025 · Plano, Texas / Remote</div><p>Supported Azure environments, Git-based workflows, Azure DevOps pipelines, release processes, and deployment troubleshooting.</p></div>
-      <div class="role"><h3>Software Developer (.NET) · Programsy IT Solutions</h3><div class="meta">August 2019 – September 2022 · Secunderabad, India</div><p>Developed and maintained C#/.NET MVC business applications, Bootstrap interfaces, SQL Server data operations, and reusable service components.</p></div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow">Core capabilities</div>
+      <h2>Full-stack engineering toolkit</h2>
+      <p class="section-intro">Backend, front-end, integration, database, delivery, and production-support experience.</p>
+      <div class="grid">
+        <article class="card"><h3>C# & .NET</h3><p>ASP.NET MVC, ASP.NET Core, Web API, Entity Framework, LINQ, dependency injection, business logic, and application maintenance.</p></article>
+        <article class="card"><h3>Front-end & UX</h3><p>HTML5, CSS3, Sass, JavaScript, Bootstrap, responsive layouts, form validation, reusable components, and design-to-code implementation.</p></article>
+        <article class="card"><h3>APIs & middleware</h3><p>REST, HTTP, JSON, request validation, exception handling, service integrations, Swagger/OpenAPI, and Postman.</p></article>
+        <article class="card"><h3>SQL Server</h3><p>T-SQL, joins, stored procedures, relational data access, transaction handling, and data integrity.</p></article>
+        <article class="card"><h3>Azure DevOps</h3><p>Git workflows, build and release pipelines, artifact management, deployment validation, and CI/CD troubleshooting.</p></article>
+        <article class="card"><h3>Production support</h3><p>Cross-layer debugging, defect resolution, regression checks, secure coding practices, and incremental modernization.</p></article>
+      </div>
     </div>
-    <div class="card" style="margin-top:1rem"><h3>Education</h3><p><strong>M.S., Computer Science and Information Systems</strong> — University of Michigan–Flint, 2022–2023</p><p><strong>B.Tech., Computer Science and Engineering</strong> — Glocal University, 2013–2017</p><p class="small">Résumé lists Azure Developer Associate, Azure Administrator Associate, Azure Fundamentals, Microsoft 365 Endpoint Administrator Associate, and AWS Solutions Architect Associate certifications; Azure Solutions Architect Expert is in progress. Confirm current status and credential links before submission.</p></div>
-  </div>
-</section>
-<section id="contact">
-  <div class="wrap contact">
-    <div class="eyebrow">Let’s connect</div><h2>Ready to contribute to enterprise .NET teams.</h2>
-    <p>I’m interested in roles combining backend development, front-end implementation, accessible user experiences, and reliable delivery.</p>
-    <div class="contact-links"><a href="mailto:rameshproit@gmail.com">rameshproit@gmail.com</a><a href="https://www.linkedin.com/in/sai-ramesh-u/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/sairamesh28" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
-    <p class="small" style="color:#e0ecec;margin-top:1.5rem">Before vendor submission: add a public repository with the actual demo source, and only list accessibility tools or formal training you have personally used/completed.</p>
-  </div>
-</section>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow">Career snapshot</div>
+      <h2>Enterprise application experience</h2>
+      <p class="section-intro">Experience spanning government, customer-facing applications, APIs, cloud environments, and software delivery.</p>
+      <div class="timeline">
+        <article class="role">
+          <h3>Programmer Analyst 6 · State of Michigan</h3>
+          <div class="meta">May 2026 – Present · Lansing, Michigan / Hybrid</div>
+          <p>Enhancing government applications with C#/.NET, responsive UI, APIs, SQL Server, Azure DevOps workflows, and accessibility-conscious implementation.</p>
+        </article>
+        <article class="role">
+          <h3>Azure .NET Developer · Brightspeed</h3>
+          <div class="meta">September 2025 – May 2026 · Remote</div>
+          <p>Developed .NET functionality, responsive interfaces, REST APIs, SQL Server features, and supported cloud deployments.</p>
+        </article>
+        <article class="role">
+          <h3>API .NET Developer / .NET Developer · Charles Schwab</h3>
+          <div class="meta">April 2025 – September 2025 · Austin, Texas / Hybrid</div>
+          <p>Built and enhanced API endpoints and enterprise modules, including validation, integrations, SQL Server operations, and debugging.</p>
+        </article>
+        <article class="role">
+          <h3>Cloud Engineer / DevOps Engineer · Tech Mahindra</h3>
+          <div class="meta">February 2024 – April 2025 · Plano, Texas / Remote</div>
+          <p>Supported Azure environments, Git workflows, Azure DevOps pipelines, release processes, and deployment troubleshooting.</p>
+        </article>
+        <article class="role">
+          <h3>Software Developer (.NET) · Programsy IT Solutions</h3>
+          <div class="meta">August 2019 – September 2022 · Secunderabad, India</div>
+          <p>Developed and maintained C#/.NET MVC business applications, Bootstrap interfaces, SQL Server data operations, and reusable service components.</p>
+        </article>
+      </div>
+
+      <article class="card">
+        <h3>Education</h3>
+        <p><strong>M.S., Computer Science and Information Systems</strong> — University of Michigan–Flint, 2022–2023</p>
+        <p><strong>B.Tech., Computer Science and Engineering</strong> — Glocal University, 2013–2017</p>
+        <p class="small">Confirm current certification status and credential links before submission. Your résumé lists Azure Developer Associate, Azure Administrator Associate, Azure Fundamentals, Microsoft 365 Endpoint Administrator Associate, and AWS Solutions Architect Associate; Azure Solutions Architect Expert is in progress.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div class="eyebrow">Let’s connect</div>
+      <h2>Ready to contribute to enterprise .NET teams.</h2>
+      <p>I’m interested in roles combining backend development, front-end implementation, accessible user experiences, and reliable software delivery.</p>
+      <div class="contact-links">
+        <a href="mailto:rameshproit@gmail.com">rameshproit@gmail.com</a>
+        <a href="https://www.linkedin.com/in/sai-ramesh-u/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://github.com/sairamesh28" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+      <p class="small">The interactive form and API snippet are illustrative portfolio demonstrations. They do not transmit data or represent a deployed backend service.</p>
+    </div>
+  </section>
 </main>
-<footer><div class="wrap">© <span id="year">2026</span> Sai Ramesh U · Portfolio preview · Built with semantic HTML, CSS, and JavaScript.</div></footer>
-</div>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Sai Ramesh U · Built with semantic HTML, CSS, and JavaScript.</div>
+</footer>
+
 <script>
-const form = document.getElementById('request-form');
-const summary = document.getElementById('error-summary');
-const result = document.getElementById('form-result');
-const fields = [
-  { id: 'full-name', label: 'Full name', validate: value => value.trim() ? '' : 'Enter your first and last name.' },
-  { id: 'email', label: 'Email address', validate: value => !value.trim() ? 'Enter your email address.' : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) ? '' : 'Enter an email address in a format like name@example.com.' },
-  { id: 'details', label: 'How can we help?', validate: value => value.trim() ? '' : 'Describe what you need help with.' }
-];
-function clearErrors() {
-  fields.forEach(field => {
-    const input = document.getElementById(field.id);
-    const error = document.getElementById(field.id + '-error');
-    input.removeAttribute('aria-invalid');
-    error.textContent = '';
-    error.hidden = true;
-  });
-  summary.hidden = true;
-}
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  clearErrors();
-  result.hidden = true;
-  const invalid = [];
-  fields.forEach(field => {
-    const input = document.getElementById(field.id);
-    const message = field.validate(input.value);
-    if (message) {
-      input.setAttribute('aria-invalid', 'true');
-      const error = document.getElementById(field.id + '-error');
-      error.textContent = message;
-      error.hidden = false;
-      invalid.push({ field, message, input });
+  const form = document.getElementById('request-form');
+  const summary = document.getElementById('error-summary');
+  const result = document.getElementById('form-result');
+
+  const fields = [
+    {
+      id: 'full-name',
+      validate: value => value.trim()
+        ? ''
+        : 'Enter your first and last name.'
+    },
+    {
+      id: 'email',
+      validate: value => {
+        if (!value.trim()) return 'Enter your email address.';
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+          ? ''
+          : 'Enter an email address in a format like name@example.com.';
+      }
+    },
+    {
+      id: 'details',
+      validate: value => value.trim()
+        ? ''
+        : 'Describe what you need help with.'
     }
+  ];
+
+  function clearErrors() {
+    fields.forEach(field => {
+      const input = document.getElementById(field.id);
+      const error = document.getElementById(field.id + '-error');
+      input.removeAttribute('aria-invalid');
+      error.textContent = '';
+      error.hidden = true;
+    });
+    summary.hidden = true;
+  }
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    clearErrors();
+    result.hidden = true;
+
+    const invalid = [];
+
+    fields.forEach(field => {
+      const input = document.getElementById(field.id);
+      const message = field.validate(input.value);
+
+      if (message) {
+        input.setAttribute('aria-invalid', 'true');
+        const error = document.getElementById(field.id + '-error');
+        error.textContent = message;
+        error.hidden = false;
+        invalid.push({ message });
+      }
+    });
+
+    if (invalid.length) {
+      summary.textContent =
+        `There ${invalid.length === 1 ? 'is' : 'are'} ${invalid.length} error${invalid.length === 1 ? '' : 's'} in this form. Review the fields below and try again.`;
+      summary.hidden = false;
+      summary.focus();
+      return;
+    }
+
+    result.textContent =
+      `Thanks, ${document.getElementById('full-name').value.trim()}. The form passed this demo's front-end validation. No data was sent or saved.`;
+    result.hidden = false;
+    result.focus();
   });
-  if (invalid.length) {
-    summary.textContent = `There ${invalid.length === 1 ? 'is' : 'are'} ${invalid.length} error${invalid.length === 1 ? '' : 's'} in this form. Review the fields below and try again.`;
-    summary.hidden = false;
-    summary.focus();
-    return;
-  }
-  result.textContent = `Thanks, ${document.getElementById('full-name').value.trim()}. The form passed this demo's front-end validation. No data was sent or saved.`;
-  result.hidden = false;
-  result.focus();
-});
-form.addEventListener('reset', () => {
-  window.setTimeout(() => { clearErrors(); result.hidden = true; }, 0);
-});
-fields.forEach(field => document.getElementById(field.id).addEventListener('input', () => {
-  const input = document.getElementById(field.id);
-  const error = document.getElementById(field.id + '-error');
-  if (input.value.trim() && field.validate(input.value) === '') {
-    input.removeAttribute('aria-invalid');
-    error.hidden = true;
-    error.textContent = '';
-  }
-}));
+
+  form.addEventListener('reset', () => {
+    setTimeout(() => {
+      clearErrors();
+      result.hidden = true;
+    }, 0);
+  });
+
+  fields.forEach(field => {
+    document.getElementById(field.id).addEventListener('input', () => {
+      const input = document.getElementById(field.id);
+      const error = document.getElementById(field.id + '-error');
+
+      if (input.value.trim() && field.validate(input.value) === '') {
+        input.removeAttribute('aria-invalid');
+        error.hidden = true;
+        error.textContent = '';
+      }
+    });
+  });
 </script>
 </body>
 </html>
